@@ -7,16 +7,16 @@
 #if HIL_MODE != HIL_MODE_ATTITUDE && HIL_MODE != HIL_MODE_SENSORS
 static int8_t   test_baro(uint8_t argc,                 const Menu::arg *argv);
 #endif
-static int8_t   test_battery(uint8_t argc,              const Menu::arg *argv);
+//static int8_t   test_battery(uint8_t argc,              const Menu::arg *argv);
 static int8_t   test_compass(uint8_t argc,              const Menu::arg *argv);
 static int8_t   test_gps(uint8_t argc,                  const Menu::arg *argv);
 static int8_t   test_ins(uint8_t argc,                  const Menu::arg *argv);
-static int8_t   test_logging(uint8_t argc,              const Menu::arg *argv);
+//static int8_t   test_logging(uint8_t argc,              const Menu::arg *argv);
 static int8_t   test_motors(uint8_t argc,               const Menu::arg *argv);
-static int8_t   test_optflow(uint8_t argc,              const Menu::arg *argv);
-static int8_t   test_radio_pwm(uint8_t argc,            const Menu::arg *argv);
-static int8_t   test_radio(uint8_t argc,                const Menu::arg *argv);
-static int8_t   test_relay(uint8_t argc,                const Menu::arg *argv);
+//static int8_t   test_optflow(uint8_t argc,              const Menu::arg *argv);
+//static int8_t   test_radio_pwm(uint8_t argc,            const Menu::arg *argv);
+//static int8_t   test_radio(uint8_t argc,                const Menu::arg *argv);
+//static int8_t   test_relay(uint8_t argc,                const Menu::arg *argv);
 #if CONFIG_HAL_BOARD == HAL_BOARD_PX4
 static int8_t   test_shell(uint8_t argc,                const Menu::arg *argv);
 #endif
@@ -24,7 +24,7 @@ static int8_t   test_shell(uint8_t argc,                const Menu::arg *argv);
 static int8_t   test_sonar(uint8_t argc,                const Menu::arg *argv);
 #endif
 //static int8_t	test_toy(uint8_t argc,                  const Menu::arg *argv);
-static int8_t   test_tuning(uint8_t argc,               const Menu::arg *argv);
+//static int8_t   test_tuning(uint8_t argc,               const Menu::arg *argv);
 
 // This is the help function
 // PSTR is an AVR macro to read strings from flash memory
@@ -49,16 +49,16 @@ const struct Menu::command test_menu_commands[] PROGMEM = {
 #if HIL_MODE != HIL_MODE_ATTITUDE && HIL_MODE != HIL_MODE_SENSORS
     {"baro",                test_baro},
 #endif
-    {"battery",             test_battery},
+//    {"battery",             test_battery},
     {"compass",             test_compass},
     {"gps",                 test_gps},
     {"ins",                 test_ins},
-    {"logging",             test_logging},
+//    {"logging",             test_logging},
     {"motors",              test_motors},
-    {"optflow",             test_optflow},
-    {"pwm",                 test_radio_pwm},
-    {"radio",               test_radio},
-    {"relay",               test_relay},
+//    {"optflow",             test_optflow},
+//    {"pwm",                 test_radio_pwm},
+//    {"radio",               test_radio},
+//    {"relay",               test_relay},
 #if CONFIG_HAL_BOARD == HAL_BOARD_PX4
     {"shell", 				test_shell},
 #endif
@@ -66,7 +66,7 @@ const struct Menu::command test_menu_commands[] PROGMEM = {
     {"sonar",               test_sonar},
 #endif
 //	{"toy",			        test_toy},
-    {"tune",                test_tuning}
+//    {"tune",                test_tuning}
 };
 
 // A Macro to create the Menu
@@ -106,7 +106,7 @@ test_baro(uint8_t argc, const Menu::arg *argv)
 }
 #endif
 
-static int8_t
+/*static int8_t
 test_battery(uint8_t argc, const Menu::arg *argv)
 {
     // check if radio is calibration
@@ -117,11 +117,11 @@ test_battery(uint8_t argc, const Menu::arg *argv)
     }
 
     cliSerial->printf_P(PSTR("\nCareful! Motors will spin! Press Enter to start.\n"));
-    while (cliSerial->read() != -1); /* flush */
-    while(!cliSerial->available()) { /* wait for input */
+    while (cliSerial->read() != -1); // flush 
+    while(!cliSerial->available()) { // wait for input 
         delay(100);
     }
-    while (cliSerial->read() != -1); /* flush */
+    while (cliSerial->read() != -1); // flush 
     print_hit_enter();
 
     // allow motors to spin
@@ -153,7 +153,7 @@ test_battery(uint8_t argc, const Menu::arg *argv)
     motors.armed(false);
     return (0);
 }
-
+*/
 static int8_t
 test_compass(uint8_t argc, const Menu::arg *argv)
 {
@@ -305,13 +305,13 @@ test_ins(uint8_t argc, const Menu::arg *argv)
 /*
  *  test the dataflash is working
  */
-static int8_t
+/*static int8_t
 test_logging(uint8_t argc, const Menu::arg *argv)
 {
     cliSerial->println_P(PSTR("Testing dataflash logging"));
     DataFlash.ShowDeviceInfo(cliSerial);
     return 0;
-}
+}*/
 
 static int8_t
 test_motors(uint8_t argc, const Menu::arg *argv)
@@ -344,7 +344,7 @@ test_motors(uint8_t argc, const Menu::arg *argv)
     }
 }
 
-static int8_t
+/*static int8_t
 test_optflow(uint8_t argc, const Menu::arg *argv)
 {
 #if OPTFLOW == ENABLED
@@ -376,8 +376,8 @@ test_optflow(uint8_t argc, const Menu::arg *argv)
     return (0);
 #endif      // OPTFLOW == ENABLED
 }
-
-static int8_t
+*/
+/*static int8_t
 test_radio_pwm(uint8_t argc, const Menu::arg *argv)
 {
     print_hit_enter();
@@ -408,8 +408,8 @@ test_radio_pwm(uint8_t argc, const Menu::arg *argv)
         }
     }
 }
-
-static int8_t
+*/
+/*static int8_t
 test_radio(uint8_t argc, const Menu::arg *argv)
 {
     print_hit_enter();
@@ -443,13 +443,13 @@ test_radio(uint8_t argc, const Menu::arg *argv)
          *                                               g.rc_3.pwm_out
          *                                               );
          */
-        if(cliSerial->available() > 0) {
+/*        if(cliSerial->available() > 0) {
             return (0);
         }
     }
-}
+}*/
 
-static int8_t test_relay(uint8_t argc, const Menu::arg *argv)
+/*static int8_t test_relay(uint8_t argc, const Menu::arg *argv)
 {
     print_hit_enter();
     delay(1000);
@@ -469,7 +469,7 @@ static int8_t test_relay(uint8_t argc, const Menu::arg *argv)
             return (0);
         }
     }
-}
+}*/
 
 #if CONFIG_HAL_BOARD == HAL_BOARD_PX4
 /*
@@ -563,7 +563,7 @@ test_sonar(uint8_t argc, const Menu::arg *argv)
  *       cliSerial->printf("yaw_rate, %d, roll_rate, %d\n", yaw_rate, roll_rate);
  *  }*/
 
-static int8_t
+/*static int8_t
 test_tuning(uint8_t argc, const Menu::arg *argv)
 {
     print_hit_enter();
@@ -579,7 +579,7 @@ test_tuning(uint8_t argc, const Menu::arg *argv)
         }
     }
 }
-
+*/
 static void print_hit_enter()
 {
     cliSerial->printf_P(PSTR("Hit Enter to exit.\n\n"));
