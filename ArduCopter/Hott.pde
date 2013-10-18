@@ -558,6 +558,7 @@ void _hott_setup() {
   _HOTT_PORT->begin(19200);
   _hott_enable_receiver();
 //check AVR_SCHEDULER_MAX_TIMER_PROCS
+//!!
 	hal.scheduler->register_timer_process(_hott_serial_scheduler);
   //init msgs
   _hott_msgs_init();  //set default values  
